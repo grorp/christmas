@@ -1,6 +1,6 @@
 const makeBunny = () => {
 	const bunny = document.createElement("img");
-	bunny.src = "bunny.svg";
+	bunny.src = "https://grorp.github.io/christmas/bunny.svg";
 	bunny.width = 150;
 	bunny.height = 150;
 
@@ -14,7 +14,7 @@ const makeBunny = () => {
 		bunny.remove();
 
 		const audio = document.createElement("audio");
-		audio.src = "giggle.wav";
+		audio.src = "https://grorp.github.io/christmas/giggle.wav";
 		audio.addEventListener("ended", makeBunny);
 		audio.play();
 	};

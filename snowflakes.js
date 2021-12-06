@@ -17,7 +17,7 @@ const updateSnowflake = (snowflake) => {
 
 const addSnowflake = () => {
 	const snowflake = document.createElement("img");
-	snowflake.src = "snowflake.svg";
+	snowflake.src = "https://grorp.github.io/christmas/snowflake.svg";
 	snowflake.size = Math.random() * 50 + 25;
 
 	snowflake.initialPosition = {
