@@ -5,10 +5,11 @@ const makeBunny = () => {
 	bunny.height = 150;
 
 	bunny.style.position = "absolute";
-	bunny.style.top =
-		Math.random() * (document.body.clientHeight - bunny.height) + "px";
+	bunny.style.zIndex = 9998;
 	bunny.style.left =
 		Math.random() * (document.body.clientWidth - bunny.width) + "px";
+	bunny.style.top =
+		Math.random() * (document.body.clientHeight - bunny.height) + "px";
 
 	const handleClick = () => {
 		bunny.remove();

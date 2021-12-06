@@ -5,7 +5,7 @@ const updateSnowflake = (snowflake) => {
 	snowflake.style.height = snowflake.size + "px";
 
 	snowflake.style.position = "absolute";
-	snowflake.style.zIndex = 999999;
+	snowflake.style.zIndex = 9999;
 	snowflake.style.left = snowflake.position.x + "px";
 	snowflake.style.top = snowflake.position.y + "px";
 
