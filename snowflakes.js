@@ -4,12 +4,14 @@ const updateSnowflake = (snowflake) => {
 	snowflake.style.width = snowflake.size + "px";
 	snowflake.style.height = snowflake.size + "px";
 
-	snowflake.style.position = "absolute";
-	snowflake.style.zIndex = 9999;
-	snowflake.style.left = snowflake.position.x + "px";
-	snowflake.style.top = snowflake.position.y + "px";
+	snowflake.style.position = "fixed";
+	snowflake.style.left =
+		snowflake.position.x - document.documentElement.scrollLeft + "px";
+	snowflake.style.top =
+		snowflake.position.y - document.documentElement.scrollTop + "px";
 
-	snowflake.style.opacity = snowflake.opacity;
+	snowflake.style.zIndex = 9999;
+
 	if (snowflake.removed) {
 		snowflake.remove();
 	}
@@ -21,7 +23,7 @@ const addSnowflake = () => {
 	snowflake.size = Math.random() * 50 + 25;
 
 	snowflake.initialPosition = {
-		x: Math.random() * document.body.clientWidth,
+		x: Math.random() * document.documentElement.scrollWidth,
 		y: -snowflake.size,
 	};
 	snowflake.position = {
@@ -29,7 +31,6 @@ const addSnowflake = () => {
 	};
 	snowflake.sinOffset = Math.random() * Math.PI;
 
-	snowflake.opacity = 1;
 	snowflake.removed = false;
 
 	updateSnowflake(snowflake);
@@ -50,12 +51,7 @@ const animate = () => {
 			Math.sin(timeNow * 0.001 + snowflake.sinOffset) * 100;
 		snowflake.position.y = snowflake.position.y + timeDelta * 0.2;
 
-		const distance =
-			document.body.clientHeight -
-			(snowflake.position.y + snowflake.size + 10);
-		snowflake.opacity = (distance < 100 && distance / 100) || 1;
-
-		if (distance < 0) {
+		if (snowflake.position.y > document.documentElement.scrollHeight) {
 			snowflake.removed = true;
 		}
 
