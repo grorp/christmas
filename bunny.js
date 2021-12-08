@@ -1,15 +1,17 @@
 const makeBunny = () => {
 	const bunny = document.createElement("img");
 	bunny.src = "https://grorp.github.io/christmas/bunny.svg";
-	bunny.width = 150;
-	bunny.height = 150;
+	bunny.size = 150;
+
+	bunny.style.width = bunny.size + "px";
+	bunny.style.height = bunny.size + "px";
 
 	bunny.style.position = "absolute";
 	bunny.style.left =
-		Math.random() * (document.documentElement.scrollWidth - bunny.width) +
+		Math.random() * (document.documentElement.scrollWidth - bunny.size) +
 		"px";
 	bunny.style.top =
-		Math.random() * (document.documentElement.scrollHeight - bunny.height) +
+		Math.random() * (document.documentElement.scrollHeight - bunny.size) +
 		"px";
 
 	bunny.style.zIndex = 9998;
