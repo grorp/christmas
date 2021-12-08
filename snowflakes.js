@@ -23,7 +23,9 @@ const addSnowflake = () => {
 	snowflake.size = Math.random() * 50 + 25;
 
 	snowflake.initialPosition = {
-		x: Math.random() * document.documentElement.scrollWidth,
+		x:
+			Math.random() *
+			(document.documentElement.scrollWidth - snowflake.size),
 		y: -snowflake.size,
 	};
 	snowflake.position = {
