@@ -1,4 +1,4 @@
-# ❄️ Christmas 🎄
+# 🎄 Christmas 🍪
 
 A tiny piece of JavaScript that can add a touch of christmas to every website. Use this code to add it to your website:
 
