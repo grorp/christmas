@@ -1,6 +1,24 @@
 let snowflakes = [];
 let confetti = false;
 
+const makeSnowflake = () => {
+	let snowflake;
+
+	if (!confetti) {
+		snowflake = document.createElement("img");
+		snowflake.src = "https://grorp.github.io/christmas/snowflake.svg";
+	} else {
+		snowflake = document.createElement("div");
+		snowflake.style.backgroundColor = `hsla(${Math.floor(
+			Math.random() * 360,
+		)}, ${Math.floor(Math.random() * 25 + 75)}%, ${Math.floor(
+			Math.random() * 50 + 50,
+		)}%, 75%)`;
+	}
+
+	return snowflake;
+};
+
 const updateSnowflake = (snowflake) => {
 	snowflake.style.width = snowflake.size + "px";
 	snowflake.style.height = snowflake.size + "px";
@@ -19,20 +37,7 @@ const updateSnowflake = (snowflake) => {
 };
 
 const addSnowflake = () => {
-	const snowflake = document.createElement("img");
-	if (!confetti) {
-		snowflake.src = "https://grorp.github.io/christmas/snowflake.svg";
-	} else {
-		snowflake.src =
-			`data:image/svg+xml,` +
-			encodeURIComponent(
-				`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect x="0" y="0" width="10" height="10" fill="hsl(${Math.floor(
-					Math.random() * 360
-				)}, ${Math.floor(Math.random() * 25 + 75)}%, ${Math.floor(
-					Math.random() * 50 + 50
-				)}%)" /></svg>`
-			);
-	}
+	let snowflake = makeSnowflake();
 	snowflake.size = Math.random() * 50 + 25;
 
 	snowflake.initialPosition = {
