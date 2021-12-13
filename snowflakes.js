@@ -1,4 +1,5 @@
 let snowflakes = [];
+let confetti = false;
 
 const updateSnowflake = (snowflake) => {
 	snowflake.style.width = snowflake.size + "px";
@@ -19,7 +20,19 @@ const updateSnowflake = (snowflake) => {
 
 const addSnowflake = () => {
 	const snowflake = document.createElement("img");
-	snowflake.src = "https://grorp.github.io/christmas/snowflake.svg";
+	if (!confetti) {
+		snowflake.src = "https://grorp.github.io/christmas/snowflake.svg";
+	} else {
+		snowflake.src =
+			`data:image/svg+xml,` +
+			encodeURIComponent(
+				`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect x="0" y="0" width="10" height="10" fill="hsl(${Math.floor(
+					Math.random() * 360
+				)}, ${Math.floor(Math.random() * 25 + 75)}%, ${Math.floor(
+					Math.random() * 50 + 50
+				)}%)" /></svg>`
+			);
+	}
 	snowflake.size = Math.random() * 50 + 25;
 
 	snowflake.initialPosition = {
@@ -51,7 +64,11 @@ const animate = () => {
 		snowflake.position.x =
 			snowflake.initialPosition.x +
 			Math.sin(timeNow * 0.001 + snowflake.sinOffset) * 100;
-		snowflake.position.y = snowflake.position.y + timeDelta * 0.2;
+		if (!confetti) {
+			snowflake.position.y = snowflake.position.y + timeDelta * 0.2;
+		} else {
+			snowflake.position.y = snowflake.position.y + timeDelta * 0.8;
+		}
 
 		if (snowflake.position.y > document.documentElement.scrollHeight) {
 			snowflake.removed = true;
@@ -67,7 +84,11 @@ const animate = () => {
 		timeAddSnowflake = null;
 	}
 	if (!timeAddSnowflake) {
-		timeAddSnowflake = timeNow + 100;
+		if (!confetti) {
+			timeAddSnowflake = timeNow + 100;
+		} else {
+			timeAddSnowflake = timeNow + 25;
+		}
 	}
 
 	timeLast = timeNow;
