@@ -1,3 +1,5 @@
+let counter = 0;
+
 const makeBunny = () => {
 	const bunny = document.createElement("img");
 	bunny.src = "https://grorp.github.io/christmas/bunny.svg";
@@ -18,11 +20,25 @@ const makeBunny = () => {
 
 	const handleClick = () => {
 		bunny.remove();
+		counter = counter + 1;
 
-		const audio = document.createElement("audio");
-		audio.src = "https://grorp.github.io/christmas/giggle.wav";
-		audio.addEventListener("ended", makeBunny);
-		audio.play();
+		if (counter < 10) {
+			const audio = document.createElement("audio");
+			audio.src = "https://grorp.github.io/christmas/giggle.wav";
+			audio.addEventListener("ended", makeBunny);
+			audio.play();
+		} else {
+			counter = 0;
+
+			const audio = document.createElement("audio");
+			audio.src = "https://grorp.github.io/christmas/applause.wav";
+			audio.addEventListener("ended", () => {
+				confetti = false;
+				makeBunny();
+			});
+			confetti = true;
+			audio.play();
+		}
 	};
 	bunny.addEventListener("click", handleClick);
 
